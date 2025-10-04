@@ -1,10 +1,16 @@
 #include <catch2/catch_test_macros.hpp>
-#include <catch2/benchmark/catch_benchmark.hpp>
-#include <catch2/benchmark/catch_constructor.hpp>
-#include <catch2/generators/catch_generators_range.hpp>
-
 #include "../src/raining.hpp"
 
-TEST_CASE( "it returns Hello World" ) {
-    REQUIRE( hello() == "Hello World!" );
+TEST_CASE("wantsAnother recognizes yes inputs") {
+    REQUIRE(wantsAnother("y"));
+    REQUIRE(wantsAnother("Y"));
+    REQUIRE(wantsAnother("yes"));
+    REQUIRE(wantsAnother("Yes"));
+}
+
+TEST_CASE("wantsAnother rejects no inputs") {
+    REQUIRE_FALSE(wantsAnother("n"));
+    REQUIRE_FALSE(wantsAnother("no"));
+    REQUIRE_FALSE(wantsAnother("No"));
+    REQUIRE_FALSE(wantsAnother("whatever"));
 }
